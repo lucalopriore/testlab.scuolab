@@ -1,0 +1,73 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    Edwiser RemUI
+    @package   theme_remui
+    @copyright (c) 2020 WisdmLabs (https://wisdmlabs.com/)
+    @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+
+}}
+{{!
+    @template theme_remui/activity_navigation
+
+    Display the activity navigation for all activities in a course
+
+    Context variables required for this template:
+
+    Example context (json):
+    {
+    }
+}}
+
+<div class="row studentengagement-graphs">
+    {{# graphs }}
+        <div class="col-md-6 {{graph}}">
+            <div class="graph-container">
+                <div class="graph-header row mt-0 mx-0 mb-3 p-3">
+                    <div class="graph-header-background bg-primary">
+                    </div>
+                    {{#editing}}
+                        <h4>{{header}}</h4>
+                    {{/editing}}
+                    {{^editing}}
+                        <div class="panel-title p-0">
+                            <strong class="mb-1">
+                                {{header}}
+                            </strong>
+                        </div>
+                    {{/editing}}
+                    <div class="ml-auto p-0">
+                        <div class="export-urls dropdown float-end">
+                            <button role="button" type="button" class="btn" data-toggle="dropdown">
+                                <i class="fa fa-ellipsis-v"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                {{# morelink }}
+                                    <a href="{{{.}}}" class="dropdown-item">{{#str}} more, core_calendar {{/str}}</a>
+                                {{/ morelink }}
+                                {{# downloadlinks }}
+                                    {{> local_edwiserreports/download_buttons }}
+                                {{/ downloadlinks }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="graph-body {{^editing}} px-3 pb-3 {{/editing}}">
+                    {{{filters}}}
+                    <div class="graph">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/ graphs }}
+</div>
